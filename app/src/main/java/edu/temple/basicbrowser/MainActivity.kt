@@ -4,6 +4,7 @@ import android.R
 import android.os.Bundle
 import android.view.View
 import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.EditText
 import android.widget.ImageButton
 import androidx.appcompat.app.AppCompatActivity
@@ -24,7 +25,18 @@ class MainActivity : AppCompatActivity() {
         webView = findViewById(R.id.webView)
 
         webView.settings.javaScriptEnabled = true
-
+        // Allow your browser to intercept hyperlink clicks
+        webView.webViewClient = WebViewClient()
 
     }
-}
+
+    fun fixUrl(url: String) {
+        if (url.contains(":"))
+            url
+        else
+            StringBuilder()
+                .append("https://")
+                .append(url)
+                .toString()
+    }
+}    
